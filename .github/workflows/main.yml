@@ -10,7 +10,7 @@ jobs:
       - uses: octokit/graphql-action@v2.x
         id: add_project
         with:
-          mutation: |
+          query: |
             mutation {
               addProjectCard(
                 input: {
