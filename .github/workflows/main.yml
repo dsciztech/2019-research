@@ -11,5 +11,5 @@ jobs:
       - uses: alex-page/github-project-automation-plus@v0.1.0
         with:
           project: engineering-technology
-          column: "To do"
+          column: Done
           repo-token: ${{ secrets.GITHUB_PERSONAL_ORG }}
