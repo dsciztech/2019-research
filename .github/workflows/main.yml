@@ -1,26 +1,26 @@
-name: Add Project
+name: Queue issue to engineering-technology
 on:
   issues:
     types: [opened]
 
 jobs:
-  add:
+  queue-issue-engineering-technology:
     runs-on: ubuntu-latest
     steps:
       - uses: octokit/graphql-action@v2.x
-        id: add_project
+        id: queue-issue-engineering-technology
         with:
           query: |
-            mutation release($node_id:String!) {
+            mutation release($node-id:String!) {
               addProjectCard(
                 input: {
-                  contentId: $node_id,
+                  contentId: $node-id,
                   projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
                 }
               ) {
                 clientMutationId
               }
             }
-          node_id: ${{ github.event.issue.node_id }}
+          node-id: ${{ github.event.issue.node_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_DSCIZTECHBOT }}
