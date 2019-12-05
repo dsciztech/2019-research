@@ -15,13 +15,12 @@ jobs:
               addProjectCard(
                 input: {
                   contentId: $node,
-                  projectColumnId: 0
+                  projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
                 }
               ) {
                 clientMutationId
               }
             }
-          node: ${{ github.event.issues.node_id }}
-          repo: ${{ github.event.repository.name }}
+          node: ${{ github.event.issue.node_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
