@@ -11,16 +11,16 @@ jobs:
         id: queue-issue-engineering-technology
         with:
           query: |
-            mutation release($node-id:String!) {
+            mutation release($node:String!) {
               addProjectCard(
                 input: {
-                  contentId: $node-id,
+                  contentId: $node,
                   projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
                 }
               ) {
                 clientMutationId
               }
             }
-          node-id: ${{ github.event.issue.node_id }}
+          node: ${{ github.event.issue.node_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_DSCIZTECHBOT }}
