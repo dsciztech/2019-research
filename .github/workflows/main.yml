@@ -1,26 +1,15 @@
-name: Add Project
+name: Add to Project
+
 on:
   issues:
     types: [opened]
 
 jobs:
-  add:
+  add-to-project:
     runs-on: ubuntu-latest
     steps:
-      - uses: octokit/graphql-action@v2.x
-        id: add_project
+      - uses: alex-page/github-project-automation-plus@v0.1.0
         with:
-          query: |
-            mutation release($node_id:String!) {
-              addProjectCard(
-                input: {
-                  contentId: $node_id,
-                  projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
-                }
-              ) {
-                clientMutationId
-              }
-            }
-          node_id: ${{ github.event.issue.node_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          project: engineering-technology
+          column: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
