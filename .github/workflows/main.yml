@@ -7,11 +7,20 @@ jobs:
   add:
     runs-on: ubuntu-latest
     steps:
-      - uses: dsciztech/graphql-action@0.5
+      - uses: octokit/graphql-action@v2.x
         id: add_project
         with:
           query: |
-            mutation
+            mutation release($node_id:String!) {
+              addProjectCard(
+                input: {
+                  contentId: $node_id,
+                  projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
+                }
+              ) {
+                clientMutationId
+              }
+            }
           node_id: ${{ github.event.issue.node_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_PERSONAL_ORG }}
