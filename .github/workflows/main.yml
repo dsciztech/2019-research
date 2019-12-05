@@ -1,0 +1,27 @@
+name: Add Project
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: octokit/graphql-action@v2.x
+        id: add_project
+        with:
+          mutation: |
+            mutation {
+              addProjectCard(
+                input: {
+                  contentId: $node,
+                  projectColumnId: 0
+                }
+              ) {
+                clientMutationId
+              }
+            }
+          node: ${{ github.event.issues.node_id }}
+          repo: ${{ github.event.repository.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
