@@ -11,16 +11,16 @@ jobs:
         id: add_project
         with:
           query: |
-            mutation {
+            mutation release($node_id:String!) {
               addProjectCard(
                 input: {
-                  contentId: "$node",
+                  contentId: $node_id,
                   projectColumnId: "MDEzOlByb2plY3RDb2x1bW43MTQ2NTA3"
                 }
               ) {
                 clientMutationId
               }
             }
-          node: ${{ github.event.issue.node_id }}
+          node_id: ${{ github.event.issue.node_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
